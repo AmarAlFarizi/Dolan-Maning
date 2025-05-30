@@ -14,7 +14,7 @@ class TicketRepository implements TicketRepositoryInterface
 
     public function getAllNewTickets()
     {
-        return Ticket::lates()->get();
+        return Ticket::latest()->get();
     }
 
     public function find($id)
@@ -22,9 +22,9 @@ class TicketRepository implements TicketRepositoryInterface
         return Ticket::find($id);
     }  
 
-    public function getPrice()
+    public function getPrice($ticketId)
     {
-        $ticket = $this-> find($ticketid);
+        $ticket = $this-> find($ticketId);
         return $ticket ? $ticket->price : 0;
     }    
 
