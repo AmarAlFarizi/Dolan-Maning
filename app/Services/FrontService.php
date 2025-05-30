@@ -5,6 +5,8 @@ namespace App\Services;
 
 use App\Repositories\Contracts\CategoryRepositoryInterface;
 use App\Repositories\Contracts\TicketRepositoryInterface;
+use App\Repositories\Contracts\SellerRepositoryInterface;
+
 
 class FrontService
 {
