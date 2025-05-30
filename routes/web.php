@@ -18,6 +18,7 @@ Route::post('/check/payment',[BookingController::class,'paymentStore'])->name('f
 
 Route::get('/booking/{ticket:slug}', [BookingController::class, 'booking'])->name('front.booking');
 Route::post('/booking/{ticket:slug}', [BookingController::class, 'bookingStore'])->name('front.booking_store');
+
 Route::get('/booking/finished/{bookingTransaction}', [BookingController::class, 'bookingFinished'])->name('front.booking_finished');
 
 
