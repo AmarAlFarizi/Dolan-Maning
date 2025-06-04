@@ -11,15 +11,16 @@ use Illuminate\Support\Str;
 class Category extends Model
 {
     use HasFactory, softDeletes;
-    
+
     //mass assignment
-    protected $fillable = 
+    protected $fillable =
     [
         'name',
         'slug',
-        'icon'
+        'icon',
+        'icon_white',
     ];
-    
+
     public function setNameAttribute($value)
     {
         $this->attributes['name'] = $value;

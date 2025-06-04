@@ -76,7 +76,7 @@ class BookingService
 
             $validated['ticket_id'] = $booking['ticket_id'];
             $validated['is_paid'] = false;
-            
+
             $validated['booking_trx_id'] = BookingTransaction::generateUniqueTrxId();
 
             $newBooking = $this->bookingRepository->createBooking($validated);

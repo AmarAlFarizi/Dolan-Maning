@@ -17,22 +17,24 @@ class FrontController extends Controller
         $this->frontService = $frontService;
     }
     //konsep service repository pattern
-    public function index(){
+    public function index()
+    {
 
         $data = $this->frontService->getFrontPageData();
-        dd($data);
+        // dd($data);
+        return view('front.index', $data);
     }
     //model binding
 
     public function details(Ticket $ticket)
     {
-        dd($ticket);
-    //   return view('front.details', compact('ticket'));  
+        // dd($ticket);
+        return view('front.details', compact('ticket'));
     }
 
     public function category(Category $category)
     {
-        dd($category);
-        // return view('front.category');
+        // dd($category);
+        return view('front.category', compact('category'));
     }
 }
