@@ -82,26 +82,26 @@
                 </p>
             </section>
             <section id="Time" class="flex flex-col gap-[6px]">
-                <h2 class="font-bold text-sm leading--[21px]">Time</h2>
+                <h2 class="font-bold text-sm leading--[21px]">Waktu</h2>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="flex items-center rounded-3xl p-[14px_16px] gap-4 bg-[#F8F8F9]">
                         <img src="{{asset('assets/images/icons/timer.svg')}}" class="w-6 h-6" alt="icon">
                         <div class="text-left">
-                            <p class="text-sm leading-[21px]">Open Time</p>
+                            <p class="text-sm leading-[21px]">Buka</p>
                             <p class="font-bold text-lg leading-[27px]">{{$ticket->open_time_at}}</p>
                         </div>
                     </div>
                     <div class="flex items-center rounded-3xl p-[14px_16px] gap-4 bg-[#F8F8F9]">
                         <img src="{{asset('assets/images/icons/clock.svg')}}" class="w-6 h-6" alt="icon">
                         <div class="text-left">
-                            <p class="text-sm leading-[21px]">Closed Time</p>
+                            <p class="text-sm leading-[21px]">Tutup</p>
                             <p class="font-bold text-lg leading-[27px]">Masih Error</p>
                         </div>
                     </div>
                 </div>
             </section>
             <section id="Travel-with-Juara" class="flex flex-col gap-[6px]">
-                <h2 class="font-bold text-sm leading-[21px]">Get to Know</h2>
+                <h2 class="font-bold text-sm leading-[21px]">Kamu Harus Tau</h2>
                 <div class="grid grid-cols-3 gap-3">
                     <div class="flex flex-col items-center rounded-3xl p-[14px_16px] gap-3 text-center bg-[#13181D]">
                         <img src="{{asset('assets/images/icons/security-card.svg')}}" class="w-9 h-9" alt="icon">
@@ -160,7 +160,7 @@
                 <p class="font-bold text-[22px] leading-[26px]">Rp {{number_format($ticket->price,0, '.',',')}}</p>
                 <p class="text-sm leading-[26px] text-[#70758F]">/Orang</p>
             </div>
-            <a href="booking.html">
+            <a href="{{route('front.booking', $ticket->slug)}}">
                 <div class="flex items-center p-1 pl-5 w-fit gap-4 rounded-full bg-[#13181D]">
                     <p class="font-bold text-white">Pesan Sekarang</p>
                     <img src="{{asset('assets/images/icons/coupon.svg')}}" class="w-[50px] h-[50px]" alt="icon">

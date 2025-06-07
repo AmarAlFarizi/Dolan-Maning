@@ -18,6 +18,12 @@ class BookingService
         $this->ticketRepository = $ticketRepository;
         $this->bookingRepository = $bookingRepository;
     }
+
+    public function getBookingDetails(array $validated)
+    {
+        return $this->bookingRepository->findByTrxIdAndPhoneNumber($validated['booking_trx_id'], $validated['phone_number']);
+    }
+
     public function calculateTotals($ticketId, $totalParticipant)
     {
         $ppn = 0.11;
@@ -59,6 +65,7 @@ class BookingService
 
     public function paymentStore(array $validated)
     {
+        $booking = session('booking');
         DB::transaction(function () use ($validated, &$bookingTransactionId, &$booking) {
 
             if (isset($validated['proof'])) {

@@ -3,8 +3,13 @@ const minus = document.getElementById("minus");
 const text = document.getElementById("count-text");
 const people = document.getElementById("people");
 const totalPriceElement = document.getElementById("total-price");
+const realTicketPrice = document.getElementById("realTicketPrice");
 
-const pricePerItem = 8559000; // default price per item in Rupiah
+const subTotal = document.getElementById("subTotal");
+const inputTotalPpn = document.getElementById("totalPpn");
+const totalAmount = document.getElementById("totalAmount");
+
+const pricePerItem = realTicketPrice.value;
 
 function formatRupiah(number) {
     return "Rp " + number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -13,7 +18,15 @@ function formatRupiah(number) {
 function updateTotalPrice() {
     let currentValue = parseInt(people.value);
     let totalPrice = currentValue * pricePerItem;
+    //jika ingin menggunakan ppn 
+    const ppn = 0.11;
+    const totalPpn = totalPrice * ppn;
+    const grandTotalPrice = totalPpn + totalPrice;
     totalPriceElement.textContent = formatRupiah(totalPrice);
+
+    subTotal.value = totalPrice;
+    inputTotalPpn.value = totalPpn;
+    totalAmount.value = grandTotalPrice;
 }
 
 plus.addEventListener("click", () => {
