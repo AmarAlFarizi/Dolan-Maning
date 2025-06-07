@@ -58,7 +58,7 @@
                     </a>
                 </li>
                 <li class=" text-[#F97316]">
-                    <a href="check-booking.html" class="menu">
+                    <a href="{{route('front.check_booking')}}" class="menu">
                         <div class="group flex flex-col items-center text-center gap-[10px]">
                             <div class="w-6 h-6 flex shrink-0">
                                 <svg class="transition-all duration-300 group-hover:fill-[#F97316]  fill-current" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
