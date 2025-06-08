@@ -4,40 +4,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dolan Maning - Testimoni</title>
     <link href="{{ asset('output.css') }}" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
 </head>
 
 <body>
-    <div class="relative flex flex-col w-full min-h-screen max-w-[640px] mx-auto bg-[#F8F8F9]">
-        <main class="flex flex-col justify-center items-center w-full px-8 m-auto">
-            <form method="POST" action="{{route('front.check_booking_details')}}" class="flex flex-col w-[329px] shrink-0 rounded-[30px] p-5 gap-6 bg-white">
-                @csrf
-                <img src="{{asset('assets/images/icons/ticket-star.svg')}}" class="w-20 h-20 mx-auto" alt="icon">
-                <h1 class="font-bold text-2xl leading-9 text-center">Lacak Tiket Kamu</h1>
-                <div class="flex flex-col gap-[6px]">
-                    <label for="bookId" class="font-semibold text-sm leading-[21px]">Booking ID</label>
-                    <div class="flex items-center rounded-full px-5 gap-[10px] bg-[#F8F8F9] transition-all duration-300 focus-within:ring-1 focus-within:ring-[#F97316]">
-                        <img src="{{asset('assets/images/icons/user-octagon.svg')}}" class="w-6 h-6" alt="icon">
-                        <input type="text" name="booking_trx_id" id="bookId" class="appearance-none outline-none py-[14px] !bg-transparent w-full font-semibold text-sm leading-[21px] placeholder:font-normal placeholder:text-[#13181D]" placeholder="Tulis Id Booking Kamu">
+    <div class="relative flex flex-col w-full min-h-screen max-w-[640px] mx-auto bg-white">
+        {{-- Top Navigation --}}
+        <div class="flex items-center justify-between w-full px-4 mt-[20px]">
+            <a href="{{route('front.index')}}">
+                <img src="{{ asset('assets/images/logos/logo-hitam.png') }}" alt="Logo" class="h-10 w-auto">
+            </a>
+
+            <a href="#">
+                <img src="{{ asset('assets/images/icons/heart-fill.svg') }}" class="w-12 h-12" alt="icon">
+            </a>
+        </div>
+
+        {{-- Static Testimonial Content --}}
+        <main class="flex flex-col w-full gap-5 mt-5 px-4 overflow-x-hidden">
+            <section id="Testimonials" class="flex flex-col gap-4">
+                <h2 class="font-bold text-xl">Apa Kata Mereka?</h2>
+
+                {{-- Testimonial Card 1 --}}
+                <div class="flex flex-col gap-2 p-4 rounded-2xl bg-[#F8F8F9] shadow-sm">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 overflow-hidden">
+                            <img src="{{ asset('assets/images/backgrounds/avatar-1.webp') }}" alt="avatar" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-sm">Rizky Andika</h3>
+                            <p class="text-xs text-gray-500">Semarang</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-700 leading-relaxed mt-1">"Pengalaman seru banget! Tempat wisatanya unik dan layanan dari Dolan Maning sangat ramah."</p>
+                    <div class="flex items-center gap-1 mt-2">
+                        @for ($i = 0; $i < 5; $i++)
+                            <img src="{{ asset('assets/images/icons/Star 1.svg') }}" class="w-4 h-4" alt="star">
+                            @endfor
                     </div>
                 </div>
-                <div class="flex flex-col gap-[6px]">
-                    <label for="phone" class="font-semibold text-sm leading-[21px]">Nomor Hp</label>
-                    <div class="flex items-center rounded-full px-5 gap-[10px] bg-[#F8F8F9] transition-all duration-300 focus-within:ring-1 focus-within:ring-[#F97316]">
-                        <img src="{{asset('assets/images/icons/mobile.svg')}}" class="w-6 h-6" alt="icon">
-                        <input type="tel" name="phone_number" id="phone" class="appearance-none outline-none py-[14px] !bg-transparent w-full font-semibold text-sm leading-[21px] placeholder:font-normal placeholder:text-[#13181D]" placeholder="Tulis No Hp Kamu">
+
+                {{-- Testimonial Card 2 --}}
+                <div class="flex flex-col gap-2 p-4 rounded-2xl bg-[#F8F8F9] shadow-sm">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 overflow-hidden">
+                            <img src="{{ asset('assets/images/backgrounds/avatar-3.webp') }}" alt="avatar" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-sm">Dewi Lestari</h3>
+                            <p class="text-xs text-gray-500">Yogyakarta</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-700 leading-relaxed mt-1">"Sangat direkomendasikan! Booking cepat dan informasi di website sangat lengkap."</p>
+                    <div class="flex items-center gap-1 mt-2">
+                        @for ($i = 0; $i < 5; $i++)
+                            <img src="{{ asset('assets/images/icons/Star 1.svg') }}" class="w-4 h-4" alt="star">
+                            @endfor
                     </div>
                 </div>
-                <button type="submit" class="w-full rounded-full p-[14px_20px] text-white text-center bg-[#F97316] font-bold">
-                    Lacak Tiket
-                </button>
-            </form>
+
+                {{-- Testimonial Card 3 --}}
+                <div class="flex flex-col gap-2 p-4 rounded-2xl bg-[#F8F8F9] shadow-sm">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 overflow-hidden">
+                            <img src="{{ asset('assets/images/backgrounds/avatar-2.webp') }}" alt="avatar" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-sm">Budi Hartono</h3>
+                            <p class="text-xs text-gray-500">Malang</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-700 leading-relaxed mt-1">"Situs ini membantu banget buat nentuin destinasi wisata bareng keluarga!"</p>
+                    <div class="flex items-center gap-1 mt-2">
+                        @for ($i = 0; $i < 5; $i++)
+                            <img src="{{ asset('assets/images/icons/Star 1.svg') }}" class="w-4 h-4" alt="star">
+                            @endfor
+                    </div>
+                </div>
+            </section>
         </main>
+
+        {{-- Bottom Navigation --}}
         <nav id="Bottom-Nav" class="fixed bottom-0 w-full max-w-[640px] bg-white px-4 py-5 z-30">
             <ul class="flex justify-evenly max-[400px]:justify-between">
-                <li class=" text-[#13181D]">
+                <li class=" text-[#F97316]">
                     <a href="{{route('front.index')}}" class="menu">
                         <div class="group flex flex-col items-center text-center gap-[10px]">
                             <div class="w-6 h-6 flex shrink-0">
@@ -57,7 +109,7 @@
                         </div>
                     </a>
                 </li>
-                <li class=" text-[#F97316]">
+                <li class=" text-[#13181D]">
                     <a href="{{route('front.check_booking')}}" class="menu">
                         <div class="group flex flex-col items-center text-center gap-[10px]">
                             <div class="w-6 h-6 flex shrink-0">
@@ -89,7 +141,7 @@
                     </a>
                 </li>
                 <li class=" text-[#13181D]">
-                    <a href="" class="menu">
+                    <a href="{{route('front.support')}}" class="menu">
                         <div class="group flex flex-col items-center text-center gap-[10px]">
                             <div class="w-6 h-6 flex shrink-0">
                                 <svg class="transition-all duration-300 group-hover:fill-[#F97316]  fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

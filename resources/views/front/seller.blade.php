@@ -17,7 +17,7 @@
             <a href="{{route('front.index')}}">
                 <img src="{{asset('assets/images/icons/back.svg')}}" class="w-12 h-12" alt="icon">
             </a>
-            <h1 class="font-bold text-lg leading-[27px] text-white text-center w-full">City Details</h1>
+            <h1 class="font-bold text-lg leading-[27px] text-white text-center w-full">Detail Tempat</h1>
             <img src="{{asset('assets/images/icons/Ellipse 3.svg')}}" class="absolute transform -translate-x-1/2 left-1/2" alt="background">
             <a href="#">
                 <img src="{{asset('assets/images/icons/heart.svg')}}" class="w-12 h-12" alt="icon">
@@ -29,8 +29,8 @@
                     <img src="{{Storage::url($seller->photo)}}" class="w-full h-full object-cover" alt="thumbnail">
                 </div>
                 <p class="font-bold text-xl leading-[30px]">
-                    <span class="text-[#F97316]">{{$seller->tickets->count()}}</span> Things to Do <br>
-                    in {{$seller->name}}
+                    <span class="text-[#F97316]">{{$seller->tickets->count()}}</span> Tempat <br>
+                    di {{$seller->name}}
                 </p>
             </div>
             <section id="Places" class="flex flex-col gap-3 px-4 pb-10">

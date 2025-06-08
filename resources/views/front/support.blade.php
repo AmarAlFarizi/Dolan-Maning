@@ -4,40 +4,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dolan Maning - Support</title>
     <link href="{{ asset('output.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+        .support-card {
+            transition: all 0.3s ease;
+        }
+
+        .support-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-item {
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+    </style>
 </head>
 
 <body>
-    <div class="relative flex flex-col w-full min-h-screen max-w-[640px] mx-auto bg-[#F8F8F9]">
-        <main class="flex flex-col justify-center items-center w-full px-8 m-auto">
-            <form method="POST" action="{{route('front.check_booking_details')}}" class="flex flex-col w-[329px] shrink-0 rounded-[30px] p-5 gap-6 bg-white">
-                @csrf
-                <img src="{{asset('assets/images/icons/ticket-star.svg')}}" class="w-20 h-20 mx-auto" alt="icon">
-                <h1 class="font-bold text-2xl leading-9 text-center">Lacak Tiket Kamu</h1>
-                <div class="flex flex-col gap-[6px]">
-                    <label for="bookId" class="font-semibold text-sm leading-[21px]">Booking ID</label>
-                    <div class="flex items-center rounded-full px-5 gap-[10px] bg-[#F8F8F9] transition-all duration-300 focus-within:ring-1 focus-within:ring-[#F97316]">
-                        <img src="{{asset('assets/images/icons/user-octagon.svg')}}" class="w-6 h-6" alt="icon">
-                        <input type="text" name="booking_trx_id" id="bookId" class="appearance-none outline-none py-[14px] !bg-transparent w-full font-semibold text-sm leading-[21px] placeholder:font-normal placeholder:text-[#13181D]" placeholder="Tulis Id Booking Kamu">
-                    </div>
+    <div class="relative flex flex-col w-full min-h-screen max-w-[640px] mx-auto bg-white">
+        {{-- Top Navigation --}}
+        <div class="flex items-center justify-between w-full px-4 mt-[20px]">
+            <a href="{{ route('front.index') }}">
+                <img src="{{ asset('assets/images/logos/logo-hitam.png') }}" alt="Logo" class="h-10 w-auto">
+            </a>
+            <a href="#">
+                <img src="{{ asset('assets/images/icons/heart-fill.svg') }}" class="w-12 h-12" alt="icon">
+            </a>
+        </div>
+
+        {{-- Support Content --}}
+        <main class="flex flex-col w-full gap-5 mt-5 px-4 overflow-x-hidden pb-[100px]">
+            <!-- Hero Section -->
+            <section class="relative bg-gradient-to-r from-orange-500 to-orange-400 rounded-2xl p-6 text-white mb-6">
+                <div class="absolute top-0 right-0 w-24 h-24 opacity-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11.5 2C6.81 2 3 5.81 3 10.5c0 .5.04.99.11 1.48A5.997 5.997 0 0 0 9.5 18c2.21 0 4.21-1.19 5.25-3.12.57.13 1.16.2 1.75.2 4.69 0 8.5-3.81 8.5-8.5C25 2.81 21.19-1 16.5-1c-2.69 0-5.1 1.26-6.65 3.23A10.42 10.42 0 0 0 6.5 2H11.5z"></path>
+                    </svg>
                 </div>
-                <div class="flex flex-col gap-[6px]">
-                    <label for="phone" class="font-semibold text-sm leading-[21px]">Nomor Hp</label>
-                    <div class="flex items-center rounded-full px-5 gap-[10px] bg-[#F8F8F9] transition-all duration-300 focus-within:ring-1 focus-within:ring-[#F97316]">
-                        <img src="{{asset('assets/images/icons/mobile.svg')}}" class="w-6 h-6" alt="icon">
-                        <input type="tel" name="phone_number" id="phone" class="appearance-none outline-none py-[14px] !bg-transparent w-full font-semibold text-sm leading-[21px] placeholder:font-normal placeholder:text-[#13181D]" placeholder="Tulis No Hp Kamu">
-                    </div>
+                <h1 class="font-bold text-2xl mb-2">Pusat Bantuan</h1>
+                <p class="text-sm opacity-90">Kami siap membantu menjawab pertanyaan dan menyelesaikan masalah Anda</p>
+            </section>
+
+            <section id="Support" class="flex flex-col gap-4">
+                <h2 class="font-bold text-xl flex items-center gap-2">
+                    <span class="inline-block w-1 h-6 bg-orange-500 rounded-full"></span>
+                    Hubungi Kami
+                </h2>
+                <p class="text-sm text-gray-600 leading-relaxed">
+                    Jika kamu mengalami kendala saat menggunakan Dolan Maning, silakan pilih salah satu opsi bantuan di bawah ini.
+                </p>
+
+                <div class="flex flex-col gap-3">
+                    {{-- WhatsApp Support --}}
+                    <a href="https://wa.me/6281234567890?text=Halo%20Admin%2C%20saya%20butuh%20bantuan%20terkait%20pemesanan" target="_blank" class="support-card flex items-center gap-4 p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-xl border border-green-200">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <img src="{{ asset('assets/images/icons/call-orange.svg') }}" class="w-6 h-6" alt="Whatsapp">
+                        </div>
+                        <div>
+                            <p class="font-semibold text-sm">Chat via WhatsApp</p>
+                            <p class="text-xs text-gray-500">Fast response selama jam kerja</p>
+                        </div>
+                        <div class="ml-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400">
+                                <path d="m9 18 6-6-6-6" />
+                            </svg>
+                        </div>
+                    </a>
+
+                    {{-- Email Support --}}
+                    <a href="mailto:support@dolanmaning.id" class="support-card flex items-center gap-4 p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl border border-blue-200">
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <img src="{{ asset('assets/images/icons/sms.svg') }}" class="w-6 h-6" alt="Email">
+                        </div>
+                        <div>
+                            <p class="font-semibold text-sm">Email ke Support</p>
+                            <p class="text-xs text-gray-500">Balasan dalam 1x24 jam</p>
+                        </div>
+                        <div class="ml-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400">
+                                <path d="m9 18 6-6-6-6" />
+                            </svg>
+                        </div>
+                    </a>
+
+                    {{-- Call Center --}}
+                    <a href="tel:+6281234567890" class="support-card flex items-center gap-4 p-4 bg-gradient-to-r from-orange-50 to-orange-100 rounded-xl border border-orange-200">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <img src="{{ asset('assets/images/icons/call-orange.svg') }}" class="w-6 h-6" alt="Whatsapp">
+                        </div>
+                        <div>
+                            <p class="font-semibold text-sm">Call Center</p>
+                            <p class="text-xs text-gray-500">Senin-Jumat, 08.00-17.00 WIB</p>
+                        </div>
+                        <div class="ml-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400">
+                                <path d="m9 18 6-6-6-6" />
+                            </svg>
+                        </div>
+                    </a>
                 </div>
-                <button type="submit" class="w-full rounded-full p-[14px_20px] text-white text-center bg-[#F97316] font-bold">
-                    Lacak Tiket
-                </button>
-            </form>
+            </section>
         </main>
+
+        {{-- Bottom Navigation --}}
         <nav id="Bottom-Nav" class="fixed bottom-0 w-full max-w-[640px] bg-white px-4 py-5 z-30">
             <ul class="flex justify-evenly max-[400px]:justify-between">
-                <li class=" text-[#13181D]">
+                <li class=" text-[#F97316]">
                     <a href="{{route('front.index')}}" class="menu">
                         <div class="group flex flex-col items-center text-center gap-[10px]">
                             <div class="w-6 h-6 flex shrink-0">
@@ -57,7 +150,7 @@
                         </div>
                     </a>
                 </li>
-                <li class=" text-[#F97316]">
+                <li class=" text-[#13181D]">
                     <a href="{{route('front.check_booking')}}" class="menu">
                         <div class="group flex flex-col items-center text-center gap-[10px]">
                             <div class="w-6 h-6 flex shrink-0">
@@ -89,7 +182,7 @@
                     </a>
                 </li>
                 <li class=" text-[#13181D]">
-                    <a href="" class="menu">
+                    <a href="{{route('front.support')}}" class="menu">
                         <div class="group flex flex-col items-center text-center gap-[10px]">
                             <div class="w-6 h-6 flex shrink-0">
                                 <svg class="transition-all duration-300 group-hover:fill-[#F97316]  fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -105,6 +198,20 @@
             </ul>
         </nav>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const header = item.querySelector('div:first-child');
+
+                header.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

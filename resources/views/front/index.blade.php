@@ -13,11 +13,9 @@
 
 <body>
     <div class="relative flex flex-col w-full min-h-screen max-w-[640px] mx-auto bg-white">
-        <div id="Top-Nav" class="flex items-center justify-between w-full px-4 mt-[60px]">
+        <div id="Top-Nav" class="flex items-center justify-between w-full px-4 mt-[20px]">
             <a href="{{route('front.index')}}">
-                <strong>
-                    <h2>Dolan Maning</h2>
-                </strong>
+                <img src="{{ asset('assets/images/logos/logo-hitam.png') }}" alt="Logo" class="h-10 w-auto">
             </a>
             <a href="#">
                 <img src="assets/images/icons/heart-fill.svg" class="w-12 h-12" alt="icon">
@@ -25,7 +23,7 @@
         </div>
         <main class="flex flex-col w-full gap-5 mt-5 overflow-x-hidden">
             <section id="Popular" class="flex flex-col gap-3">
-                <h2 class="px-4 font-bold">Popular This Year</h2>
+                <h2 class="px-4 font-bold">Paling Populer Tahun Ini</h2>
                 <div class="swiper-popular w-full overflow-hidden">
                     <div class="swiper-wrapper">
                         @forelse ($popularTickets as $itemPopularTicket)
@@ -60,7 +58,7 @@
                 </div>
             </section>
             <section id="Categories" class="flex flex-col gap-3">
-                <h2 class="px-4 font-bold">By Categories</h2>
+                <h2 class="px-4 font-bold">Kategori Wisata</h2>
                 <div class="swiper-categories w-full overflow-hidden">
                     <div class="swiper-wrapper">
                         @forelse ($categories as $itemCategory)
@@ -83,7 +81,7 @@
                 </div>
             </section>
             <section id="Should-Visit" class="flex flex-col gap-3">
-                <h2 class="px-4 font-bold">You Should Visit</h2>
+                <h2 class="px-4 font-bold">Kamu Harus Kunjungi</h2>
                 <div class="swiper-visit w-full overflow-hidden">
                     <div class="swiper-wrapper">
                         @forelse ($sellers as $itemSeller)
@@ -114,7 +112,7 @@
                 </div>
             </section>
             <section id="Available" class="flex flex-col gap-3 px-4 py-5 bg-[#F8F8F9] mb-[94px]">
-                <h2 class="font-bold">Now Available</h2>
+                <h2 class="font-bold">Tiket Tersedia</h2>
                 <div class="flex flex-col gap-3">
                     @forelse ($newTickets as $itemNewTicket)
                     <a href="{{ route('front.details', $itemNewTicket->slug) }}" class="card">
@@ -172,7 +170,7 @@
                                     <path d="M15.7633 15.7633C13.2622 16.0789 10.7378 16.0789 8.23667 15.7633C7.92111 13.2622 7.92111 10.7378 8.23667 8.23667C10.7378 7.92111 13.2622 7.92111 15.7633 8.23667C16.0789 10.7378 16.0789 13.2622 15.7633 15.7633Z" />
                                 </svg>
                             </div>
-                            <p class="font-semibold text-sm leading-[21px] transition-all duration-300 group-hover:text-[#F97316] text-current">Discover</p>
+                            <p class="font-semibold text-sm leading-[21px] transition-all duration-300 group-hover:text-[#F97316] text-current">Beranda</p>
                         </div>
                     </a>
                 </li>
@@ -187,12 +185,12 @@
                                     <path d="M11.75 13.75H7.25C6.84 13.75 6.5 13.41 6.5 13C6.5 12.59 6.84 12.25 7.25 12.25H11.75C12.16 12.25 12.5 12.59 12.5 13C12.5 13.41 12.16 13.75 11.75 13.75Z" />
                                 </svg>
                             </div>
-                            <p class="font-semibold text-sm leading-[21px] transition-all duration-300 group-hover:text-[#F97316] text-current">Bookings</p>
+                            <p class="font-semibold text-sm leading-[21px] transition-all duration-300 group-hover:text-[#F97316] text-current">Booking</p>
                         </div>
                     </a>
                 </li>
                 <li class=" text-[#13181D]">
-                    <a href="" class="menu">
+                    <a href="{{route('front.testimoni')}}" class="menu">
                         <div class="group flex flex-col items-center text-center gap-[10px]">
                             <div class="w-6 h-6 flex shrink-0">
                                 <svg class="transition-all duration-300 group-hover:fill-[#F97316]  fill-current" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -203,12 +201,12 @@
                                     <path opacity="0.6" d="M9.44 10V15.14C9.44 15.94 10.32 16.41 10.99 15.98L11.93 15.36C12.27 15.14 12.7 15.14 13.03 15.36L13.92 15.96C14.58 16.4 15.47 15.93 15.47 15.13V10H9.44Z" />
                                 </svg>
                             </div>
-                            <p class="font-semibold text-sm leading-[21px] transition-all duration-300 group-hover:text-[#F97316] text-current">Rewards</p>
+                            <p class="font-semibold text-sm leading-[21px] transition-all duration-300 group-hover:text-[#F97316] text-current">Testimoni</p>
                         </div>
                     </a>
                 </li>
                 <li class=" text-[#13181D]">
-                    <a href="" class="menu">
+                    <a href="{{route('front.support')}}" class="menu">
                         <div class="group flex flex-col items-center text-center gap-[10px]">
                             <div class="w-6 h-6 flex shrink-0">
                                 <svg class="transition-all duration-300 group-hover:fill-[#F97316]  fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

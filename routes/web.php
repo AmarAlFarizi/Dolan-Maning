@@ -22,3 +22,6 @@ Route::get('/booking/{ticket:slug}', [BookingController::class, 'booking'])->nam
 Route::post('/booking/{ticket:slug}', [BookingController::class, 'bookingStore'])->name('front.booking_store');
 
 Route::get('/booking/finished/{bookingTransaction}', [BookingController::class, 'bookingFinished'])->name('front.booking_finished');
+
+Route::get('/testimoni', [FrontController::class, 'testimoni'])->name('front.testimoni');
+Route::get('/support', [FrontController::class, 'support'])->name('front.support');

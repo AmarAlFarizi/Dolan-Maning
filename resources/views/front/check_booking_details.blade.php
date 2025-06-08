@@ -25,7 +25,7 @@
                 </a>
             </div>
             <div class="flex items-center justify-center h-12 w-full shrink-0">
-                <h1 class="font-bold text-lg leading-[27px] text-white text-center w-full">Booking Details</h1>
+                <h1 class="font-bold text-lg leading-[27px] text-white text-center w-full">Booking Detail</h1>
             </div>
         </div>
         <main class="relative flex flex-col w-full px-4 gap-[18px] mt-5 pb-[30px] overflow-x-hidden">
@@ -66,15 +66,15 @@
                             </p>
                         </div>
                         <div class="flex items-center justify-between">
-                            <p class="font-bold text-sm leading-[21px]">Started At</p>
+                            <p class="font-bold text-sm leading-[21px]">Untuk Kapan ?</p>
                             <p class="font-bold text-sm leading-[21px] text-[#FF1927]">
                                 {{$bookingDetails->started_at->format('M d, Y')}}
                             </p>
                         </div>
                         <div class="flex items-center justify-between">
-                            <p class="font-bold text-sm leading-[21px]">Total People</p>
+                            <p class="font-bold text-sm leading-[21px]">Jumlah Orang</p>
                             <p class="font-bold text-sm leading-[21px]">
-                                {{$bookingDetails->total_participant}} Participant
+                                {{$bookingDetails->total_participant}} Orang
                             </p>
                         </div>
                         <div class="flex items-center justify-between">
@@ -82,16 +82,16 @@
                             <p class="font-bold text-sm leading-[21px]">Included 100%</p>
                         </div>
                         <div class="flex items-center justify-between">
-                            <p class="font-bold text-sm leading-[21px]">Grand Total</p>
+                            <p class="font-bold text-sm leading-[21px]">Total Semuanya</p>
                             <p class="font-bold text-[22px] leading-[33px] text-[#F97316]">
                                 Rp {{ number_format($bookingDetails->total_amount, 0, ',', '.') }}
                             </p>
                         </div>
 
                         <div class="flex items-center justify-between">
-                            <p class="font-bold text-sm leading-[21px]">Payment Status</p>
+                            <p class="font-bold text-sm leading-[21px]">Status Pembayaran</p>
                             @if($bookingDetails->is_paid)
-                            <p class="w-fit rounded-full p-[6px_12px] bg-[#07B704] font-bold text-xs leading-[18px] text-white">SUCCESS</p>
+                            <p class="w-fit rounded-full p-[6px_12px] bg-[#07B704] font-bold text-xs leading-[18px] text-white">SUKSES</p>
                             @else
                             <p class="w-fit rounded-full p-[6px_12px] bg-[#13181D] font-bold text-xs leading-[18px] text-white">PENDING</p>
                             @endif

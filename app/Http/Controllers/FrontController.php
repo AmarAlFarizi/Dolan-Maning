@@ -48,4 +48,13 @@ class FrontController extends Controller
         // dd($category);
         return view('front.seller', compact('seller'));
     }
+
+    public function testimoni()
+    {
+        return view('front.testimoni');
+    }
+    public function support()
+    {
+        return view('front.support');
+    }
 }
