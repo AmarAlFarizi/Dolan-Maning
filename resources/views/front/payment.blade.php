@@ -57,8 +57,8 @@
             </div>
             <div class="flex flex-col rounded-[30px] p-5 gap-[14px] bg-white">
                 <div class="flex items-center justify-between">
-                    <p class="font-semibold text-sm leading-[21px]">Total People</p>
-                    <p class="font-semibold text-sm leading-[21px]">{{$booking['total_participant']}} Participant</p>
+                    <p class="font-semibold text-sm leading-[21px]">Jumlah Orang</p>
+                    <p class="font-semibold text-sm leading-[21px]">{{$booking['total_participant']}} Orang</p>
                 </div>
                 <div class="flex items-center justify-between">
                     <p class="font-semibold text-sm leading-[21px]">Sub Total</p>
@@ -86,7 +86,7 @@
             </div>
             <div class="flex flex-col rounded-[30px] p-5 gap-6 bg-white">
                 <div class="flex flex-col gap-[6px]">
-                    <p class="font-semibold text-sm leading-[21px]">Payment Method</p>
+                    <p class="font-semibold text-sm leading-[21px]">Metode Pembayaran</p>
                     <div class="grid grid-cols-2 gap-[10px]">
                         <label for="transfer" class="relative group">
                             <div class="flex items-center h-full rounded-full p-[14px_12px] gap-[6px] bg-[#F8F8F9] transition-all duration-300 group-has-[:checked]:ring-1 group-has-[:checked]:ring-[#F97316]">
@@ -124,7 +124,7 @@
                 </div>
             </div>
             <div class="flex flex-col rounded-[30px] p-5 gap-6 bg-white">
-                <p class="font-semibold text-sm leading-[21px]">Payment Method</p>
+                <p class="font-semibold text-sm leading-[21px]">Metode Pembayaran</p>
                 <div class="group w-full rounded-full px-5 flex items-center gap-[10px] bg-[#F8F8F9] relative transition-all duration-300 ">
                     <div class="w-6 h-6 flex shrink-0">
                         <img src="{{asset('assets/images/icons/receipt-2.svg')}}" alt="icon">
@@ -136,7 +136,7 @@
                     <input type="file" name="proof" id="Proof" class="absolute -z-10 opacity-0" required>
                 </div>
                 <button type="submit" class="flex items-center justify-between p-1 pl-5 w-full gap-4 rounded-full bg-[#13181D]">
-                    <p class="font-bold text-white">Confirm My Payment</p>
+                    <p class="font-bold text-white">Konfirmasi Pembayaran</p>
                     <img src="{{asset('assets/images/icons/card-tick.svg')}}" class="w-[50px] h-[50px]" alt="icon">
                 </button>
             </div>
