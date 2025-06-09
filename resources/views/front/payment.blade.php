@@ -76,10 +76,7 @@
                     <p class="font-semibold text-sm leading-[21px]">Discount 0%</p>
                     <p class="font-semibold text-sm leading-[21px]">Rp 0</p>
                 </div>
-                <div class="flex items-center justify-between">
-                    <p class="font-semibold text-sm leading-[21px]">Insurance</p>
-                    <p class="font-semibold text-sm leading-[21px]">Included 100%</p>
-                </div>
+
                 <div class="flex items-center justify-between">
                     <p class="font-semibold text-sm leading-[21px]">Grand Total</p>
                     <p class="font-bold text-[22px] leading-[33px] text-[#F97316]">
@@ -112,7 +109,7 @@
                         <img src="{{asset('assets/images/logos/bca.svg')}}" class="h-full w-full object-contain" alt="bank logo">
                     </div>
                     <div>
-                        <p class="font-semibold">JuaraTiket Indonesia</p>
+                        <p class="font-semibold">Dolan Maning</p>
                         <p>8008129839</p>
                     </div>
                 </div>
@@ -121,7 +118,7 @@
                         <img src="{{asset('assets/images/logos/mandiri.svg')}}" class="h-full w-full object-contain" alt="bank logo">
                     </div>
                     <div>
-                        <p class="font-semibold">JuaraTiket Indonesia</p>
+                        <p class="font-semibold">Dolan Maning</p>
                         <p>12379834983281</p>
                     </div>
                 </div>
