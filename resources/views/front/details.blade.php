@@ -95,7 +95,7 @@
                         <img src="{{asset('assets/images/icons/clock.svg')}}" class="w-6 h-6" alt="icon">
                         <div class="text-left">
                             <p class="text-sm leading-[21px]">Tutup</p>
-                            <!-- masih error gak kepanggil :v -->
+
                             <p class="font-bold text-lg leading-[27px]">17:00:00</p>
                         </div>
                     </div>

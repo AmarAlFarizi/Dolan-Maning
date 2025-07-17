@@ -32,9 +32,6 @@
                 </a>
                 <p class="leading-[28px] text-center">Kami akan memeriksa pembayaran dan memperbarui statusnya pembayaran Anda</p>
                 <div class="flex flex-col gap-3">
-                    <a href="{{route('front.index')}}" class="w-full rounded-full p-[14px_20px] text-white text-center bg-[#F97316] font-bold">
-                        Jelajahi Tiket Saya
-                    </a>
                     <a href="{{route('front.check_booking')}}" class="w-full rounded-full p-[14px_20px] text-white text-center bg-[#13181D] font-bold">
                         Lihat Booking Saya
                     </a>
@@ -42,6 +39,11 @@
             </div>
         </div>
     </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+
+
 
 </body>
 

@@ -68,8 +68,6 @@
                 <p>Data Belum Ditambahkan</p>
                 @endforelse
 
-
-
             </section>
         </main>
     </div>

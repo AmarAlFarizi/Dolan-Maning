@@ -160,3 +160,60 @@
 </body>
 
 </html>
+<!-- <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('downloadinvoice');
+            if (!btn) return;
+
+            btn.addEventListener('click', function() {
+                try {
+                    const {
+                        jsPDF
+                    } = window.jspdf;
+                    const doc = new jsPDF();
+
+                    // Header
+                    doc.setFont("helvetica", "bold");
+                    doc.setFontSize(18);
+                    doc.text("Bukti Pemesanan", 105, 20, {
+                        align: "center"
+                    });
+
+                    doc.setFont("helvetica", "normal");
+                    doc.setFontSize(12);
+                    doc.text("Terimakasih telah memesan tiket di platform kami", 105, 28, {
+                        align: "center"
+                    });
+
+                    // Booking Data
+                    const bookingData = [
+                        ["Booking Id", "{{$bookingTransaction->booking_trx_id}}"],
+                        ["Nama Pemesan", "{{$bookingTransaction->name}}"],
+                        ["No HP", "{{$bookingTransaction->phone_number}}"],
+                        ["Nama Tiket", "{{$bookingTransaction->ticket->name}}"],
+                        ["Penjual", "{{$bookingTransaction->ticket->seller->name}}"],
+                        ["Tanggal Booking", "{{$bookingTransaction->started_at->format('d M Y')}}"],
+                        ["Jumlah Orang", "{{$bookingTransaction->total_participant}} Orang"],
+                        ["Harga", "Rp {{number_format($bookingTransaction->ticket->price, 0, ',', '.')}}"],
+                        ["Total Harga", "Rp {{number_format($bookingTransaction->total_amount, 0, ',', '.')}}"]
+                    ];
+
+                    doc.autoTable({
+                        startY: 40,
+                        theme: 'grid',
+                        styles: {
+                            fontSize: 11
+                        },
+                        body: bookingData
+                    });
+
+
+                    // Save PDF
+                    doc.save("bukti_pembayaran_{{$bookingTransaction->booking_trx_id}}.pdf");
+
+                } catch (error) {
+                    console.error(error);
+                }
+            });
+        });
+    </script> -->

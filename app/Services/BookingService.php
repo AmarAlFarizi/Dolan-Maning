@@ -17,6 +17,8 @@ class BookingService
     {
         $this->ticketRepository = $ticketRepository;
         $this->bookingRepository = $bookingRepository;
+        // SendBookingfConfirmedEmail::dispatch(di isi objek booking baru)
+
     }
 
     public function getBookingDetails(array $validated)
@@ -87,6 +89,7 @@ class BookingService
             $validated['booking_trx_id'] = BookingTransaction::generateUniqueTrxId();
 
             $newBooking = $this->bookingRepository->createBooking($validated);
+
 
             $bookingTransactionId = $newBooking->id;
         });
