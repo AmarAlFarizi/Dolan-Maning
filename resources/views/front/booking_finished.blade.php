@@ -35,11 +35,77 @@
                     <a href="{{route('front.check_booking')}}" class="w-full rounded-full p-[14px_20px] text-white text-center bg-[#13181D] font-bold">
                         Lihat Booking Saya
                     </a>
+                    <button class="w-full rounded-full p-[14px_20px] text-white text-center bg-[#F97316] font-bold" id="downloadReceipt">
+                        Download Bukti Transaksi
+                    </button>
                 </div>
             </div>
         </div>
     </div>
     </div>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('downloadReceipt');
+            if (btn) {
+                btn.addEventListener('click', function() {
+                    const {
+                        jsPDF
+                    } = window.jspdf;
+                    const doc = new jsPDF();
+
+                    // Header
+                    doc.setFont("helvetica", "bold");
+                    doc.setFontSize(18);
+                    doc.text("Bukti Pembayaran", 105, 20, {
+                        align: "center"
+                    });
+
+                    doc.setFontSize(12);
+                    doc.setFont("helvetica", "normal");
+                    doc.text("Terima kasih telah melakukan pemesanan tiket melalui platform kami.", 105, 28, {
+                        align: "center"
+                    });
+
+                    // Tabel Informasi Booking
+                    const bookingData = [
+                        ["Booking ID", "{{$bookingTransaction->booking_trx_id}}"],
+                        ["Nama Tiket", "{{$bookingTransaction->ticket->name}}"],
+                        ["Penjual", "{{$bookingTransaction->ticket->seller->name}}"],
+                        ["Tanggal Booking", "{{$bookingTransaction->started_at->format('d M Y')}}"],
+                        ["Jumlah Orang", "{{$bookingTransaction->total_participant}} Orang"],
+                        ["Harga Tiket", "Rp {{ number_format($bookingTransaction->ticket->price, 0, ',', '.') }}"],
+                        ["Total Bayar", "Rp {{ number_format($bookingTransaction->total_amount, 0, ',', '.') }}"],
+                    ];
+
+                    doc.autoTable({
+                        startY: 40,
+                        theme: 'grid',
+                        headStyles: {
+                            fillColor: [249, 115, 22]
+                        },
+                        styles: {
+                            fontSize: 11
+                        },
+                        body: bookingData
+                    });
+
+                    // Footer
+                    const finalY = doc.lastAutoTable.finalY + 20;
+                    doc.setFontSize(10);
+                    doc.text("Gunakan Booking ID saat menukarkan tiket di lokasi.", 105, finalY, {
+                        align: "center"
+                    });
+
+                    // Simpan PDF
+                    doc.save("bukti_pembayaran_{{$bookingTransaction->booking_trx_id}}.pdf");
+                });
+            }
+        });
+    </script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 

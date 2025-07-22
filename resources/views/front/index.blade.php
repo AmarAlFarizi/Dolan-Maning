@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="relative flex flex-col w-full min-h-screen max-w-[640px] mx-auto bg-white">
+    <div class="relative flex flex-col w-full min-h-screen max-w-[1140px] mx-auto bg-white">
         <div id="Top-Nav" class="flex items-center justify-between w-full px-4 mt-[20px]">
             <a href="{{route('front.index')}}">
                 <img src="{{ asset('assets/images/logos/logo-hitam.png') }}" alt="Logo" class="h-10 w-auto">

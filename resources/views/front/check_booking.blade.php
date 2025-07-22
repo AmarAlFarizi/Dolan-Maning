@@ -89,7 +89,7 @@
                     </a>
                 </li>
                 <li class=" text-[#13181D]">
-                    <a href="" class="menu">
+                    <a href="{{route('front.support')}}" class="menu">
                         <div class="group flex flex-col items-center text-center gap-[10px]">
                             <div class="w-6 h-6 flex shrink-0">
                                 <svg class="transition-all duration-300 group-hover:fill-[#F97316]  fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

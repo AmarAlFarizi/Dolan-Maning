@@ -7,6 +7,44 @@
     <title>Dolan Maning - Testimoni</title>
     <link href="{{ asset('output.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script> -->
+    <style>
+        .testimonial-slider-wrapper {
+            overflow-x: hidden;
+            padding: 0 1rem;
+        }
+
+        .testimonial-slider {
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .testimonial-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .slide-item {
+            min-width: 280px;
+            max-width: 320px;
+        }
+
+        @media (max-width: 400px) {
+            .slide-item {
+                min-width: 260px;
+                max-width: 280px;
+            }
+        }
+
+        .slider-indicator {
+            transition: all 0.3s ease;
+        }
+
+        .slider-indicator.active {
+            background-color: #F97316;
+            width: 24px;
+        }
+    </style>
 </head>
 
 <body>
@@ -16,77 +54,120 @@
             <a href="{{route('front.index')}}">
                 <img src="{{ asset('assets/images/logos/logo-hitam.png') }}" alt="Logo" class="h-10 w-auto">
             </a>
-
             <a href="#">
                 <img src="{{ asset('assets/images/icons/heart-fill.svg') }}" class="w-12 h-12" alt="icon">
             </a>
         </div>
 
-        {{-- Static Testimonial Content --}}
-        <main class="flex flex-col w-full gap-5 mt-5 px-4 overflow-x-hidden">
-            <section id="Testimonials" class="flex flex-col gap-4">
-                <h2 class="font-bold text-xl">Apa Kata Mereka?</h2>
+        <main class="flex-1 flex flex-col gap-5 mt-5 px-4 overflow-y-auto pb-40">
+            <!-- flash message -->
+            @if (session('success'))
+            <div class="bg-green-100 text-green-700 px-4 py-3 rounded">
+                {{ session('success') }}
+            </div>
+            @endif
 
-                {{-- Testimonial Card 1 --}}
-                <div class="flex flex-col gap-2 p-4 rounded-2xl bg-[#F8F8F9] shadow-sm">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-full bg-gray-300 overflow-hidden">
-                            <img src="{{ asset('assets/images/backgrounds/avatar-1.webp') }}" alt="avatar" class="w-full h-full object-cover">
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-sm">Rizky Andika</h3>
-                            <p class="text-xs text-gray-500">Semarang</p>
-                        </div>
-                    </div>
-                    <p class="text-sm text-gray-700 leading-relaxed mt-1">"Pengalaman seru banget! Tempat wisatanya unik dan layanan dari Dolan Maning sangat ramah."</p>
-                    <div class="flex items-center gap-1 mt-2">
-                        @for ($i = 0; $i < 5; $i++)
-                            <img src="{{ asset('assets/images/icons/Star 1.svg') }}" class="w-4 h-4" alt="star">
-                            @endfor
+            @if (session('error'))
+            <div class="bg-red-100 text-red-700 px-4 py-3 rounded">
+                {{ session('error') }}
+            </div>
+            @endif
+
+            <section id="Testimonials" class="flex flex-col gap-4" x-data="testimonialSlider()">
+                <div class="flex items-center justify-between">
+                    <h2 class="font-bold text-xl">Apa Kata Mereka?</h2>
+                    <div class="flex items-center gap-2">
+                        <button @click="prevSlide()" class="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors">
+                            <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </button>
+                        <button @click="nextSlide()" class="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors">
+                            <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </button>
                     </div>
                 </div>
 
-                {{-- Testimonial Card 2 --}}
-                <div class="flex flex-col gap-2 p-4 rounded-2xl bg-[#F8F8F9] shadow-sm">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-full bg-gray-300 overflow-hidden">
-                            <img src="{{ asset('assets/images/backgrounds/avatar-3.webp') }}" alt="avatar" class="w-full h-full object-cover">
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-sm">Dewi Lestari</h3>
-                            <p class="text-xs text-gray-500">Yogyakarta</p>
-                        </div>
-                    </div>
-                    <p class="text-sm text-gray-700 leading-relaxed mt-1">"Sangat direkomendasikan! Booking cepat dan informasi di website sangat lengkap."</p>
-                    <div class="flex items-center gap-1 mt-2">
-                        @for ($i = 0; $i < 5; $i++)
-                            <img src="{{ asset('assets/images/icons/Star 1.svg') }}" class="w-4 h-4" alt="star">
-                            @endfor
-                    </div>
-                </div>
+                <!-- Testimonial Slider -->
+                <div class="relative testimonial-slider-wrapper">
+                    <div
+                        x-ref="slider"
+                        class="testimonial-slider flex gap-4 overflow-x-auto px-1"
+                        @scroll="updateIndicators()"
+                        @touchstart="startTouch($event)"
+                        @touchmove="moveTouch($event)"
+                        @touchend="endTouch($event)">
 
-                {{-- Testimonial Card 3 --}}
-                <div class="flex flex-col gap-2 p-4 rounded-2xl bg-[#F8F8F9] shadow-sm">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-full bg-gray-300 overflow-hidden">
-                            <img src="{{ asset('assets/images/backgrounds/avatar-2.webp') }}" alt="avatar" class="w-full h-full object-cover">
+                        @foreach($testimonials as $testimonial)
+                        @php
+                        $avatarNumber = $loop->iteration % 3 + 1;
+                        @endphp
+                        <div class="slide-item flex flex-col gap-2 p-4 rounded-2xl bg-[#F8F8F9] shadow-sm flex-shrink-0">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-full bg-gray-300 overflow-hidden">
+                                    <img src="{{ asset('assets/images/backgrounds/avatar-'.$avatarNumber.'.webp') }}" alt="avatar" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-sm">{{ $testimonial->name }}</h3>
+                                    <p class="text-xs text-gray-500">{{ $testimonial->origin ?? '-' }}</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-700 leading-relaxed mt-1">"{{ $testimonial->message }}"</p>
+                            @if($testimonial->rating)
+                            <div class="flex items-center gap-1 mt-2">
+                                @for ($i = 0; $i < $testimonial->rating; $i++)
+                                    <img src="{{ asset('assets/images/icons/Star 1.svg') }}" class="w-4 h-4" alt="star">
+                                    @endfor
+                            </div>
+                            @endif
                         </div>
-                        <div>
-                            <h3 class="font-semibold text-sm">Budi Hartono</h3>
-                            <p class="text-xs text-gray-500">Malang</p>
-                        </div>
+                        @endforeach
                     </div>
-                    <p class="text-sm text-gray-700 leading-relaxed mt-1">"Situs ini membantu banget buat nentuin destinasi wisata bareng keluarga!"</p>
-                    <div class="flex items-center gap-1 mt-2">
-                        @for ($i = 0; $i < 5; $i++)
-                            <img src="{{ asset('assets/images/icons/Star 1.svg') }}" class="w-4 h-4" alt="star">
-                            @endfor
+
+                    <!-- Slider Indicators -->
+                    <div class="flex justify-center gap-2 mt-4">
+                        <template x-for="(indicator, index) in indicators" :key="index">
+                            <button
+                                @click="goToSlide(index)"
+                                class="slider-indicator h-2 bg-gray-300 rounded-full cursor-pointer"
+                                :class="indicator.active ? 'active w-6' : 'w-2'"></button>
+                        </template>
                     </div>
                 </div>
             </section>
-        </main>
 
-        {{-- Bottom Navigation --}}
+            <section class="flex flex-col mt-8 border-t pt-6 pb-40">
+                <h3 class="text-lg font-bold mb-3">Tulis Ulasanmu</h3>
+                <form method="POST" action="{{ route('testimonial.store') }}" class="flex flex-col gap-3" x-data="{ selectedGender: 'male' }">
+                    @csrf
+                    <input type="text" name="name" placeholder="Nama" required class="rounded-xl border px-3 py-2 text-sm">
+                    <input type="text" name="origin" placeholder="Asal (opsional)" class="rounded-xl border px-3 py-2 text-sm">
+                    <div class="flex items-center gap-4 text-sm">
+                        <label class="flex items-center gap-1">
+                            <input type="radio" name="gender" value="male" class="gender-radio" checked>
+                            Laki-laki
+                        </label>
+                        <label class="flex items-center gap-1">
+                            <input type="radio" name="gender" value="female" class="gender-radio">
+                            Perempuan
+                        </label>
+                    </div>
+                    <textarea name="message" placeholder="Pesan" required rows="3" class="rounded-xl border px-3 py-2 text-sm"></textarea>
+                    <select name="rating" class="rounded-xl border px-3 py-2 text-sm">
+                        <option value="">Pilih Rating (opsional)</option>
+                        @for ($i = 1; $i <= 5; $i++)
+                            <option value="{{ $i }}">{{ $i }} ⭐️</option>
+                            @endfor
+                    </select>
+                    <button type="submit"
+                        class="w-full rounded-full p-[14px_20px] text-white text-center bg-[#F97316] font-bold">
+                        Kirim Testimoni
+                    </button>
+                </form>
+            </section>
+        </main>
         <nav id="Bottom-Nav" class="fixed bottom-0 w-full max-w-[640px] bg-white px-4 py-5 z-30">
             <ul class="flex justify-evenly max-[400px]:justify-between">
                 <li class=" text-[#F97316]">
@@ -156,7 +237,114 @@
                 </li>
             </ul>
         </nav>
+
     </div>
+
+    <script>
+        function testimonialSlider() {
+            return {
+                currentSlide: 0,
+                totalSlides: 0,
+                indicators: [],
+                touchStartX: 0,
+                touchEndX: 0,
+
+                init() {
+                    this.totalSlides = this.$refs.slider.children.length;
+                    this.initIndicators();
+                    this.updateIndicators();
+                },
+
+                initIndicators() {
+                    const slidesPerView = this.getSlidesPerView();
+                    const totalIndicators = Math.ceil(this.totalSlides / slidesPerView);
+
+                    this.indicators = Array.from({
+                        length: totalIndicators
+                    }, (_, index) => ({
+                        active: index === 0
+                    }));
+                },
+
+                getSlidesPerView() {
+                    const containerWidth = this.$refs.slider.offsetWidth;
+                    const slideWidth = 300; // approximate slide width including gap
+                    return Math.floor(containerWidth / slideWidth) || 1;
+                },
+
+                updateIndicators() {
+                    const slider = this.$refs.slider;
+                    const slideWidth = slider.children[0].offsetWidth + 16; // slide width + gap
+                    const slidesPerView = this.getSlidesPerView();
+
+                    this.currentSlide = Math.round(slider.scrollLeft / slideWidth);
+                    const currentIndicator = Math.floor(this.currentSlide / slidesPerView);
+
+                    this.indicators = this.indicators.map((indicator, index) => ({
+                        ...indicator,
+                        active: index === currentIndicator
+                    }));
+                },
+
+                nextSlide() {
+                    const slider = this.$refs.slider;
+                    const slideWidth = slider.children[0].offsetWidth + 16;
+                    const maxScroll = slider.scrollWidth - slider.offsetWidth;
+                    const nextScroll = Math.min(slider.scrollLeft + slideWidth, maxScroll);
+
+                    slider.scrollTo({
+                        left: nextScroll,
+                        behavior: 'smooth'
+                    });
+                },
+
+                prevSlide() {
+                    const slider = this.$refs.slider;
+                    const slideWidth = slider.children[0].offsetWidth + 16;
+                    const prevScroll = Math.max(slider.scrollLeft - slideWidth, 0);
+
+                    slider.scrollTo({
+                        left: prevScroll,
+                        behavior: 'smooth'
+                    });
+                },
+
+                goToSlide(indicatorIndex) {
+                    const slider = this.$refs.slider;
+                    const slideWidth = slider.children[0].offsetWidth + 16;
+                    const slidesPerView = this.getSlidesPerView();
+                    const targetSlide = indicatorIndex * slidesPerView;
+                    const targetScroll = targetSlide * slideWidth;
+
+                    slider.scrollTo({
+                        left: targetScroll,
+                        behavior: 'smooth'
+                    });
+                },
+
+                startTouch(e) {
+                    this.touchStartX = e.changedTouches[0].screenX;
+                },
+
+                moveTouch(e) {
+                    this.touchEndX = e.changedTouches[0].screenX;
+                },
+
+                endTouch() {
+                    const touchDiff = this.touchStartX - this.touchEndX;
+                    const minSwipeDistance = 50;
+
+                    if (Math.abs(touchDiff) > minSwipeDistance) {
+                        if (touchDiff > 0) {
+                            this.nextSlide();
+                        } else {
+                            this.prevSlide();
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>
